@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mvc.board.domain.Board;
 import com.mvc.board.service.BoardService;
 
 @Controller
@@ -24,6 +25,14 @@ public class BoardController {
 		
 		return "board/list";
 	}
+	
+	@RequestMapping("/detail.do")
+	public String select(int board_id, Model model){
+		Board board=boardService.select(board_id);
+		model.addAttribute("board", board);
+		return "board/detail";
+	}
+	
 	
 	@RequestMapping("/write.do")
 	public String insert(){

@@ -1,4 +1,4 @@
-<%@page import="com.mvc.board.model.Board"%>
+<%@page import="com.mvc.board.domain.Board"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 	Board board = (Board) request.getAttribute("board");
@@ -67,6 +67,11 @@ img {
 		}	
 		
 	}
+	
+	function regist(){
+		//비동기 요청!!
+		
+	}
 </script>
 </head>
 <body>
@@ -121,6 +126,27 @@ img {
 			<tr>
 				<td height="1" bgcolor="#CCCCCC"></td>
 			</tr>
+			<!-- 여기서 부터 댓글 테이블 영역 -->
+			<tr>
+				<td>
+					<table width="100%">
+						<tr>
+							<td width="20%"><input type="text"></td>
+							<td width="70%"><input type="text"></td>
+							<td width="10%">
+								<input type="button" value="댓글등록" onClick="regist()">
+							</td>
+						</tr>
+						<tr>
+							<td>작성자</td>
+							<td>한줄 메세지</td>
+							<td>등록일</td>
+						</tr>
+						
+					</table>
+				</td>
+			</tr>
+			<!-- 여기까지 댓글 영역 끝 -->
 			<tr>
 				<td height="20" align="center" id="copyright">Copyright zino
 					All Rights Reserved</td>
