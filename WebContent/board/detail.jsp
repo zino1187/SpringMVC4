@@ -54,6 +54,7 @@ img {
 	border: 0px
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	function edit() {
 		form1.action = "/board/edit.do";
@@ -70,15 +71,23 @@ img {
 	
 	function regist(){
 		//비동기 요청!!
+		$.post("/reply/regist.do", {
+			"writer" : form2.writer.value, 
+			"msg" : form2.msg.value, 
+			"board_id" : <%=board.getBoard_id()%>
+		}, function(data, status){
+			alert("서버로부터 받은 데이터는 "+data+", 서버의 응답코드"+status);
+		});
 		
 	}
 </script>
 </head>
 <body>
-	<form name="form1" method="post">
+	
 		<input type="hidden" name="board_id" value="<%=board.getBoard_id()%>">
 		<table id="box" align="center" width="603" border="0" cellpadding="0"
 			cellspacing="0">
+			<form name="form1" method="post">
 			<tr>
 				<td><img src="/images/ceil.gif" width="603" height="25"></td>
 			</tr>
@@ -126,13 +135,15 @@ img {
 			<tr>
 				<td height="1" bgcolor="#CCCCCC"></td>
 			</tr>
+			</form>
 			<!-- 여기서 부터 댓글 테이블 영역 -->
+			<form name="form2" method="post">
 			<tr>
 				<td>
 					<table width="100%">
 						<tr>
-							<td width="20%"><input type="text"></td>
-							<td width="70%"><input type="text"></td>
+							<td width="20%"><input type="text" name="writer"></td>
+							<td width="70%"><input type="text" name="msg"></td>
 							<td width="10%">
 								<input type="button" value="댓글등록" onClick="regist()">
 							</td>
@@ -146,12 +157,13 @@ img {
 					</table>
 				</td>
 			</tr>
+			</form>
 			<!-- 여기까지 댓글 영역 끝 -->
 			<tr>
 				<td height="20" align="center" id="copyright">Copyright zino
 					All Rights Reserved</td>
 			</tr>
 		</table>
-	</form>
+	
 </body>
 </html>
