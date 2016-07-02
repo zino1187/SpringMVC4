@@ -76,9 +76,21 @@ img {
 			"msg" : form2.msg.value, 
 			"board_id" : <%=board.getBoard_id()%>
 		}, function(data, status){
-			alert("서버로부터 받은 데이터는 "+data+", 서버의 응답코드"+status);
+			if(data=="ok"){
+				//서버에 리스트를 요청!!
+				getList();
+			}else if(data=="fail"){
+				alert("등록에 실패하였습니다.");
+			}
 		});
-		
+	}
+	
+	function getList(){
+		$.get("/reply/list.do?board_id=<%=board.getBoard_id()%>", function(data, status){
+			//var obj=JSON.parse(data);
+			//alert(obj[0].regdate);
+			alert(data.replyList[0].regdate);
+		});
 	}
 </script>
 </head>

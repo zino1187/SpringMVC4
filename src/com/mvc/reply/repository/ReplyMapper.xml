@@ -18,8 +18,8 @@
 	</select>
 
 	<insert id="insert" parameterType="Reply">
-		insert into Reply(reply_id, writer, msg)
-		values(seq_reply.nextval ,#{writer},#{msg})
+		insert into Reply(reply_id, writer, msg,board_id)
+		values(seq_reply.nextval ,#{writer},#{msg}, #{board_id})
 	</insert>
 
 </mapper>

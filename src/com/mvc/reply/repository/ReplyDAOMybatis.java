@@ -23,8 +23,7 @@ public class ReplyDAOMybatis implements ReplyDAO{
 
 	@Override
 	public List selectAll(int board_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("Reply.selectAll", board_id);
 	}
 
 	@Override

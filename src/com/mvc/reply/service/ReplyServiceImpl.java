@@ -19,8 +19,7 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 	
 	public List selectAll(int board_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return replyDAO.selectAll(board_id);
 	}
 
 	@Override
